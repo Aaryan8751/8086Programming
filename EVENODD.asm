@@ -1,0 +1,21 @@
+CODE SEGMENT
+    ASSUME CS:CODE
+    START:
+    MOV AX,4000H
+    MOV DS,AX
+    MOV SI,2000H
+    MOV CX,0064H
+    MOV BH,00H
+    MOV BL,00H
+    BACK:
+    MOV AL,[SI]
+    ROR AL,01H
+    JNC EVEN
+    INC BH
+    JMP NEXT
+    EVEN:
+    INC BL
+    NEXT:
+    INC SI
+    LOOP BACK
+    MOV [SI],BX

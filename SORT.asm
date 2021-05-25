@@ -1,0 +1,34 @@
+DATA SEGMENT
+    ARRAY1 DW 09H,08H,07H,06H,05H,04H,03H,02H,01H,00H
+    
+    DATA ENDS
+
+CODE SEGMENT
+    ASSUME DS:DATA,CS:CODE
+    START:
+    MOV AX,DATA
+    MOV DS,AX
+    
+    MOV CH,09H
+    BACK2:MOV CL,09H
+    LEA SI,ARRAY1
+    
+    BACK1:MOV AH,[SI]
+    MOV AL,[SI+1]
+    CMP AH,AL
+    JNC SKIP
+    JZ SKIP
+    
+    MOV [SI],AL
+    MOV [SI+1],AH
+    
+    SKIP:
+    INC SI
+    DEC CL
+    JNZ BACK1
+    DEC CH
+    JNZ BACK2
+    
+    INT 03H
+    CODE ENDS
+END START
