@@ -1,0 +1,16 @@
+CODE SEGMENT
+    ASSUME CS:CODE
+    START:
+    MOV AX,4000H
+    MOV DS,AX
+    MOV SI,2000H
+    MOV AL,[SI+2]
+    MOV CL,04H
+    ROR AL,CL
+    ADD AL,[SI+1]
+    MOV [SI],AL
+    
+    INT 03H
+    CODE ENDS
+END START
+    
